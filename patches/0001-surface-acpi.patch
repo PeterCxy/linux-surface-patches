@@ -1,4 +1,4 @@
-From d132750f0b52024977eace991b766182f268900a Mon Sep 17 00:00:00 2001
+From 1d28bab051112685ac3e16bc9e7bfc6b2e11f9a4 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:02:46 +0800
 Subject: [PATCH 01/11] surface-acpi
@@ -8,9 +8,9 @@ Subject: [PATCH 01/11] surface-acpi
  drivers/acpi/acpica/exfield.c       |    7 +-
  drivers/platform/x86/Kconfig        |   56 +
  drivers/platform/x86/Makefile       |    1 +
- drivers/platform/x86/surface_acpi.c | 2727 +++++++++++++++++++++++++++
+ drivers/platform/x86/surface_acpi.c | 2735 +++++++++++++++++++++++++++
  drivers/tty/serdev/core.c           |   90 +-
- 6 files changed, 2878 insertions(+), 5 deletions(-)
+ 6 files changed, 2886 insertions(+), 5 deletions(-)
  create mode 100644 drivers/platform/x86/surface_acpi.c
 
 diff --git a/drivers/acpi/acpica/dsopcode.c b/drivers/acpi/acpica/dsopcode.c
@@ -133,10 +133,10 @@ index ce8da260c223..8412fe7a169d 100644
  obj-$(CONFIG_FUJITSU_TABLET)	+= fujitsu-tablet.o
 diff --git a/drivers/platform/x86/surface_acpi.c b/drivers/platform/x86/surface_acpi.c
 new file mode 100644
-index 000000000000..6a3aa6a01493
+index 000000000000..415c87ff296f
 --- /dev/null
 +++ b/drivers/platform/x86/surface_acpi.c
-@@ -0,0 +1,2727 @@
+@@ -0,0 +1,2735 @@
 +#include <asm/unaligned.h>
 +#include <linux/acpi.h>
 +#include <linux/completion.h>
@@ -796,7 +796,11 @@ index 000000000000..6a3aa6a01493
 +	print_hex_dump_debug("send: ", DUMP_PREFIX_OFFSET, 16, 1,
 +	                     writer->data, writer->ptr - writer->data, false);
 +
-+	return serdev_device_write(serdev, writer->data, len, SG5_WRITE_TIMEOUT);
++	int ret = serdev_device_write(serdev, writer->data, len, SG5_WRITE_TIMEOUT);
++	if (ret < 0)
++		return ret;
++
++	return 0;
 +}
 +
 +inline static void surfacegen5_ssh_write_msg_cmd(struct surfacegen5_ec *ec,
@@ -1055,7 +1059,11 @@ index 000000000000..6a3aa6a01493
 +	print_hex_dump_debug("send: ", DUMP_PREFIX_OFFSET, 16, 1,
 +	                     buf, SG5_MSG_LEN_CTRL, false);
 +
-+	return serdev_device_write(ec->serdev, buf, SG5_MSG_LEN_CTRL, SG5_WRITE_TIMEOUT);
++	int ret = serdev_device_write(ec->serdev, buf, SG5_MSG_LEN_CTRL, SG5_WRITE_TIMEOUT);
++	if (ret < 0)
++		return ret;
++
++	return 0;
 +}
 +
 +static void surfacegen5_event_work_ack_handler(struct work_struct *_work)
