@@ -1,7 +1,7 @@
 From 08ae924732b0a682427f92343faba1afda2ae890 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 11:58:23 +0800
-Subject: [PATCH 06/11] surface-sdcard-reader
+Subject: [PATCH 06/12] surface-sdcard-reader
 
 ---
  drivers/usb/core/hub.c | 3 ++-

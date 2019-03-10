@@ -1,7 +1,7 @@
 From 0816e69258a1f323705e0454839cb21483c2fae5 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:05:00 +0800
-Subject: [PATCH 02/11] surface-suspend
+Subject: [PATCH 02/12] surface-suspend
 
 ---
  drivers/nvme/host/nvme.h |  5 +++++

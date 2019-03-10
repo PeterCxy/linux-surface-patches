@@ -1,7 +1,7 @@
 From cf877fdf207334bdbf9fcc48da3e7cfc8e35d13e Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 12:00:22 +0800
-Subject: [PATCH 10/11] mwlwifi
+Subject: [PATCH 10/12] mwlwifi
 
 ---
  drivers/net/wireless/marvell/Kconfig          |    1 +

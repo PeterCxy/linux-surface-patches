@@ -1,7 +1,7 @@
 From a03d4498908b5a2db477ab9924ddb31836f66aa2 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 12:03:10 +0800
-Subject: [PATCH 11/11] surface-camera
+Subject: [PATCH 11/12] surface-camera
 
 ---
  drivers/media/usb/uvc/uvc_driver.c |   40 +

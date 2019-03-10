@@ -1,7 +1,7 @@
 From 754ed367791ef796823276810e919f93f31a4a40 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 11:59:49 +0800
-Subject: [PATCH 09/11] surface-dock
+Subject: [PATCH 09/12] surface-dock
 
 ---
  drivers/usb/core/quirks.c | 2 ++

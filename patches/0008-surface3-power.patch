@@ -1,7 +1,7 @@
 From 0433813d72f86fdb4ebdaa4d372afe52fa28e581 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 11:59:26 +0800
-Subject: [PATCH 08/11] surface3-power
+Subject: [PATCH 08/12] surface3-power
 
 ---
  drivers/platform/x86/Kconfig          |   7 +

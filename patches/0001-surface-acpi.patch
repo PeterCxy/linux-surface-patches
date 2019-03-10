@@ -1,7 +1,7 @@
 From 1d28bab051112685ac3e16bc9e7bfc6b2e11f9a4 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:02:46 +0800
-Subject: [PATCH 01/11] surface-acpi
+Subject: [PATCH 01/12] surface-acpi
 
 ---
  drivers/acpi/acpica/dsopcode.c      |    2 +-
