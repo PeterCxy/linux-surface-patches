@@ -1,4 +1,4 @@
-From 2b7b742cbfebba7960c891ffb0546bc98f03211b Mon Sep 17 00:00:00 2001
+From c367687eda947b63d3ed191bf56ad253b4d3e861 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:09:07 +0800
 Subject: [PATCH 04/11] ipts
@@ -220,7 +220,7 @@ index d447d7d508f4..9d2d88cf2340 100644
  			GT_RENDER_USER_INTERRUPT << GEN8_BCS_IRQ_SHIFT |
  			GT_CONTEXT_SWITCH_INTERRUPT << GEN8_BCS_IRQ_SHIFT,
 diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 2e0356561839..4a7fb901401e 100644
+index 2e0356561839..ff3a9924d719 100644
 --- a/drivers/gpu/drm/i915/i915_params.c
 +++ b/drivers/gpu/drm/i915/i915_params.c
 @@ -141,7 +141,10 @@ i915_param_named_unsafe(edp_vswing, int, 0400,
@@ -228,7 +228,7 @@ index 2e0356561839..4a7fb901401e 100644
  	"Enable GuC load for GuC submission and/or HuC load. "
  	"Required functionality can be selected using bitmask values. "
 -	"(-1=auto, 0=disable [default], 1=GuC submission, 2=HuC load)");
-+	"(-1=auto, 0=disable, 1=GuC submission [default], 2=HuC load)");
++	"(-1=auto [default], 0=disable, 1=GuC submission, 2=HuC load)");
 +
 +i915_param_named_unsafe(enable_ipts, int, 0400,
 +	"Enable IPTS Touchscreen and Pen support (default: 1)");
@@ -236,7 +236,7 @@ index 2e0356561839..4a7fb901401e 100644
  i915_param_named(guc_log_level, int, 0400,
  	"GuC firmware logging level. Requires GuC to be loaded. "
 diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 7e56c516c815..d661b9db0042 100644
+index 7e56c516c815..208f0c056529 100644
 --- a/drivers/gpu/drm/i915/i915_params.h
 +++ b/drivers/gpu/drm/i915/i915_params.h
 @@ -45,7 +45,7 @@ struct drm_printer;
@@ -244,7 +244,7 @@ index 7e56c516c815..d661b9db0042 100644
  	param(int, enable_ips, 1) \
  	param(int, invert_brightness, 0) \
 -	param(int, enable_guc, 0) \
-+	param(int, enable_guc, 1) \
++	param(int, enable_guc, -1) \
  	param(int, guc_log_level, -1) \
  	param(char *, guc_firmware_path, NULL) \
  	param(char *, huc_firmware_path, NULL) \
@@ -6199,5 +6199,5 @@ index e083bcae343f..209370288bb9 100755
  #
  # A depmod wrapper used by the toplevel Makefile
 -- 
-2.20.1
+2.21.0
 

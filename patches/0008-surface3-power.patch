@@ -1,4 +1,4 @@
-From db897311d9cf28afa3e45d272da601c60d1c997c Mon Sep 17 00:00:00 2001
+From 0433813d72f86fdb4ebdaa4d372afe52fa28e581 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 11:59:26 +0800
 Subject: [PATCH 08/11] surface3-power
@@ -651,5 +651,5 @@ index 000000000000..e0af01a60302
 +MODULE_DESCRIPTION("mshw0011 driver");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.20.1
+2.21.0
 

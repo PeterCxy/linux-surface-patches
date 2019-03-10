@@ -1,4 +1,4 @@
-From 9ef0341a58438891dfea8c7b15072b7dbda23be0 Mon Sep 17 00:00:00 2001
+From cf877fdf207334bdbf9fcc48da3e7cfc8e35d13e Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 12:00:22 +0800
 Subject: [PATCH 10/11] mwlwifi
@@ -19751,5 +19751,5 @@ index 000000000000..b6fdf70c22fb
 +
 +#endif /* _VENDOR_CMD_H_ */
 -- 
-2.20.1
+2.21.0
 
