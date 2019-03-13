@@ -1,4 +1,4 @@
-From c367687eda947b63d3ed191bf56ad253b4d3e861 Mon Sep 17 00:00:00 2001
+From fdf31c7133f6e38eedcbbcb282034ff8be19bd06 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:09:07 +0800
 Subject: [PATCH 04/12] ipts
@@ -72,13 +72,13 @@ Subject: [PATCH 04/12] ipts
  create mode 100644 include/linux/intel_ipts_if.h
 
 diff --git a/Makefile b/Makefile
-index d5713e7b1e50..73a03157d478 100644
+index 3cd7163fe164..51c14be8d16d 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -2,7 +2,7 @@
  VERSION = 5
  PATCHLEVEL = 0
- SUBLEVEL = 0
+ SUBLEVEL = 1
 -EXTRAVERSION =
 +EXTRAVERSION = -1
  NAME = Shy Crocodile

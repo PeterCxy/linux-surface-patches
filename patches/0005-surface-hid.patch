@@ -1,4 +1,4 @@
-From b2c7de187b70065f40b379342b69749f7f3185ec Mon Sep 17 00:00:00 2001
+From f462de81950ee2acb99593a233b6039ec37a1d41 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 11:57:59 +0800
 Subject: [PATCH 05/12] surface-hid
