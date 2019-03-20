@@ -1,4 +1,4 @@
-From 53d1cc9de640fd27bcd7fc04b6e439374b8abaf7 Mon Sep 17 00:00:00 2001
+From 39b6f28b9525918716befb0635a7a1e5a000acf0 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:05:00 +0800
 Subject: [PATCH 02/12] surface-suspend

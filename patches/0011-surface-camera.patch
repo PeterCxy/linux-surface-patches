@@ -1,4 +1,4 @@
-From 50a4e370db6e5cc9de02ee641c7163a944896f8b Mon Sep 17 00:00:00 2001
+From 47e2e98d0db33198f408b835361c08ea9147e05b Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 12:03:10 +0800
 Subject: [PATCH 11/12] surface-camera
@@ -21,10 +21,10 @@ Subject: [PATCH 11/12] surface-camera
  create mode 100644 drivers/staging/ov5693/ov5693.h
 
 diff --git a/drivers/media/usb/uvc/uvc_driver.c b/drivers/media/usb/uvc/uvc_driver.c
-index b62cbd800111..6461ed3af344 100644
+index 33a22c016456..ce0a47362b2f 100644
 --- a/drivers/media/usb/uvc/uvc_driver.c
 +++ b/drivers/media/usb/uvc/uvc_driver.c
-@@ -2391,6 +2391,46 @@ static const struct uvc_device_info uvc_quirk_force_y8 = {
+@@ -2399,6 +2399,46 @@ static const struct uvc_device_info uvc_quirk_force_y8 = {
   * though they are compliant.
   */
  static const struct usb_device_id uvc_ids[] = {
