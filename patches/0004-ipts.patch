@@ -1,10 +1,9 @@
-From 7ddc8ba9e58c1e5c9fcffb1eb87e70577bc2620f Mon Sep 17 00:00:00 2001
+From c64a4fe4188ab3dbee00c4cdc18dc8e70dabaa12 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:09:07 +0800
 Subject: [PATCH 04/12] ipts
 
 ---
- Makefile                                    |    2 +-
  drivers/gpu/drm/i915/Makefile               |    3 +
  drivers/gpu/drm/i915/i915_drv.c             |   13 +
  drivers/gpu/drm/i915/i915_drv.h             |    3 +
@@ -47,7 +46,7 @@ Subject: [PATCH 04/12] ipts
  drivers/misc/mei/pci-me.c                   |    1 +
  include/linux/intel_ipts_if.h               |   75 ++
  scripts/depmod.sh                           |    4 +
- 43 files changed, 5577 insertions(+), 26 deletions(-)
+ 42 files changed, 5576 insertions(+), 25 deletions(-)
  create mode 100644 drivers/gpu/drm/i915/intel_ipts.c
  create mode 100644 drivers/gpu/drm/i915/intel_ipts.h
  create mode 100644 drivers/misc/ipts/Kconfig
@@ -71,19 +70,6 @@ Subject: [PATCH 04/12] ipts
  create mode 100644 drivers/misc/ipts/ipts.h
  create mode 100644 include/linux/intel_ipts_if.h
 
-diff --git a/Makefile b/Makefile
-index bb2f7664594a..098cf3cfc1de 100644
---- a/Makefile
-+++ b/Makefile
-@@ -2,7 +2,7 @@
- VERSION = 5
- PATCHLEVEL = 0
- SUBLEVEL = 2
--EXTRAVERSION =
-+EXTRAVERSION = -1
- NAME = Shy Crocodile
- 
- # *DOCUMENTATION*
 diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
 index 19b5fe5016bf..402e5b15173b 100644
 --- a/drivers/gpu/drm/i915/Makefile

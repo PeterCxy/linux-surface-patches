@@ -1,4 +1,4 @@
-From a4f5552e519803558321e8def2117fa2c7f277c6 Mon Sep 17 00:00:00 2001
+From 456d228cc70d8b9c12e38ff03045fee49716677a Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 11:58:23 +0800
 Subject: [PATCH 06/12] surface-sdcard-reader
