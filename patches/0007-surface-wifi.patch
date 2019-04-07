@@ -1,4 +1,4 @@
-From f4c7289ba892b2dd09156d5d99c974cc33391482 Mon Sep 17 00:00:00 2001
+From 52493d32daa756c55002d7b1b366f166e50ae5f0 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 9 Mar 2019 11:58:51 +0800
 Subject: [PATCH 07/12] surface-wifi
@@ -33,7 +33,7 @@ index 042a1d07f686..fc9041f58e9f 100644
  
  		skb_src = skb_dequeue(&pra_list->skb_head);
 diff --git a/drivers/net/wireless/marvell/mwifiex/cfg80211.c b/drivers/net/wireless/marvell/mwifiex/cfg80211.c
-index 1467af22e394..fb12551da6a0 100644
+index 883752f640b4..a3295e7b6d0a 100644
 --- a/drivers/net/wireless/marvell/mwifiex/cfg80211.c
 +++ b/drivers/net/wireless/marvell/mwifiex/cfg80211.c
 @@ -428,7 +428,10 @@ mwifiex_cfg80211_set_power_mgmt(struct wiphy *wiphy,

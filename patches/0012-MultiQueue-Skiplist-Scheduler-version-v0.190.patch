@@ -1,4 +1,4 @@
-From 4885c62094643ca2371014023175b5ffbca50537 Mon Sep 17 00:00:00 2001
+From ef2d65256b9e0d151bb63da029eb23d752c326a2 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sun, 10 Mar 2019 15:02:19 +0800
 Subject: [PATCH 12/12] MultiQueue Skiplist Scheduler version v0.190
@@ -42,12 +42,12 @@ Subject: [PATCH 12/12] MultiQueue Skiplist Scheduler version v0.190
  kernel/sched/sched.h                          |   40 +
  kernel/sched/topology.c                       |    8 +
  kernel/skip_list.c                            |  148 +
- kernel/sysctl.c                               |   52 +-
+ kernel/sysctl.c                               |   48 +-
  kernel/time/clockevents.c                     |    5 +
  kernel/time/posix-cpu-timers.c                |    8 +-
  kernel/time/timer.c                           |    7 +-
  kernel/trace/trace_selftest.c                 |    5 +
- 43 files changed, 9759 insertions(+), 56 deletions(-)
+ 43 files changed, 9757 insertions(+), 54 deletions(-)
  create mode 100644 Documentation/scheduler/sched-BFS.txt
  create mode 100644 Documentation/scheduler/sched-MuQSS.txt
  create mode 100644 include/linux/skip_list.h
@@ -934,7 +934,7 @@ index 9fcccb4490b9..7f2b6c226eed 100644
   * Frequency of the spu scheduler tick.  By default we do one SPU scheduler
   * tick for every 10 CPU scheduler ticks.
 diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-index 68261430fe6e..6e4b1b310f6c 100644
+index 64d5a3327030..06a1cfc80d48 100644
 --- a/arch/x86/Kconfig
 +++ b/arch/x86/Kconfig
 @@ -1018,6 +1018,22 @@ config NR_CPUS
@@ -1012,7 +1012,7 @@ index e9bfe6972aed..16ba1c7e5bde 100644
  }
  
 diff --git a/include/linux/sched.h b/include/linux/sched.h
-index f9b43c989577..e952f9f19bdf 100644
+index 9b35aff09f70..856a47602608 100644
 --- a/include/linux/sched.h
 +++ b/include/linux/sched.h
 @@ -29,6 +29,9 @@
@@ -1488,7 +1488,7 @@ index 2a12b988c717..dba268ca115f 100644
  	d->cpu_count += t1;
  
 diff --git a/kernel/exit.c b/kernel/exit.c
-index 2639a30a8aa5..40fe20e71553 100644
+index 2166c2d92ddc..c4eef2f20036 100644
 --- a/kernel/exit.c
 +++ b/kernel/exit.c
 @@ -130,7 +130,7 @@ static void __exit_signal(struct task_struct *tsk)
@@ -10173,7 +10173,7 @@ index f5516bae0c1b..c14cd1bcdbd0 100644
  };
 +#endif /* CONFIG_SCHED_MUQSS */
 diff --git a/kernel/sched/sched.h b/kernel/sched/sched.h
-index d04530bf251f..e0d4a0069808 100644
+index 425a5589e5f6..b76149210cb1 100644
 --- a/kernel/sched/sched.h
 +++ b/kernel/sched/sched.h
 @@ -2,6 +2,19 @@
@@ -10228,7 +10228,7 @@ index d04530bf251f..e0d4a0069808 100644
 +#endif
 +#endif /* CONFIG_SCHED_MUQSS */
 diff --git a/kernel/sched/topology.c b/kernel/sched/topology.c
-index 3f35ba1d8fde..c2fdd67d747e 100644
+index efca2489d881..6ff722398a95 100644
 --- a/kernel/sched/topology.c
 +++ b/kernel/sched/topology.c
 @@ -413,7 +413,11 @@ void rq_attach_root(struct rq *rq, struct root_domain *rd)
@@ -10410,17 +10410,13 @@ index 000000000000..bf5c6e97e139
 +	l->entries--;
 +}
 diff --git a/kernel/sysctl.c b/kernel/sysctl.c
-index 540387f3dccf..67191d333bd7 100644
+index b7c4a03033f6..5ce5e3a56990 100644
 --- a/kernel/sysctl.c
 +++ b/kernel/sysctl.c
-@@ -127,8 +127,14 @@ static int __maybe_unused one = 1;
- static int __maybe_unused two = 2;
- static int __maybe_unused four = 4;
- static unsigned long one_ul = 1;
--static int one_hundred = 100;
--static int one_thousand = 1000;
-+static int __read_mostly one_hundred = 100;
-+static int __read_mostly one_thousand = 1000;
+@@ -130,6 +130,12 @@ static unsigned long one_ul = 1;
+ static unsigned long long_max = LONG_MAX;
+ static int one_hundred = 100;
+ static int one_thousand = 1000;
 +#ifdef CONFIG_SCHED_MUQSS
 +extern int rr_interval;
 +extern int sched_interactive;
@@ -10430,7 +10426,7 @@ index 540387f3dccf..67191d333bd7 100644
  #ifdef CONFIG_PRINTK
  static int ten_thousand = 10000;
  #endif
-@@ -296,7 +302,7 @@ static struct ctl_table sysctl_base_table[] = {
+@@ -297,7 +303,7 @@ static struct ctl_table sysctl_base_table[] = {
  	{ }
  };
  
@@ -10439,7 +10435,7 @@ index 540387f3dccf..67191d333bd7 100644
  static int min_sched_granularity_ns = 100000;		/* 100 usecs */
  static int max_sched_granularity_ns = NSEC_PER_SEC;	/* 1 second */
  static int min_wakeup_granularity_ns;			/* 0 usecs */
-@@ -315,6 +321,7 @@ static int max_extfrag_threshold = 1000;
+@@ -316,6 +322,7 @@ static int max_extfrag_threshold = 1000;
  extern unsigned int resume_delay;
  
  static struct ctl_table kern_table[] = {
@@ -10447,7 +10443,7 @@ index 540387f3dccf..67191d333bd7 100644
  	{
  		.procname	= "resume_delay",
  		.data		= &resume_delay,
-@@ -476,6 +483,7 @@ static struct ctl_table kern_table[] = {
+@@ -477,6 +484,7 @@ static struct ctl_table kern_table[] = {
  		.extra1		= &one,
  	},
  #endif
@@ -10455,7 +10451,7 @@ index 540387f3dccf..67191d333bd7 100644
  #ifdef CONFIG_PROVE_LOCKING
  	{
  		.procname	= "prove_locking",
-@@ -1048,6 +1056,44 @@ static struct ctl_table kern_table[] = {
+@@ -1049,6 +1057,44 @@ static struct ctl_table kern_table[] = {
  		.proc_handler	= proc_dointvec,
  	},
  #endif

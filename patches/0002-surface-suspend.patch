@@ -1,4 +1,4 @@
-From 3e5324bf5cd0680309fee76506aa1040c935903e Mon Sep 17 00:00:00 2001
+From a3430618d651c722a38c2a5f518c9cce5d3ab507 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:05:00 +0800
 Subject: [PATCH 02/12] surface-suspend
@@ -120,10 +120,10 @@ index 0bd595a0b610..a8385e8894a5 100644
  	pm_notifier_call_chain(PM_POST_SUSPEND);
  	pm_restore_console();
 diff --git a/kernel/sysctl.c b/kernel/sysctl.c
-index ba4d9e85feb8..540387f3dccf 100644
+index 28ec71d914c7..b7c4a03033f6 100644
 --- a/kernel/sysctl.c
 +++ b/kernel/sysctl.c
-@@ -312,7 +312,16 @@ static int min_extfrag_threshold;
+@@ -313,7 +313,16 @@ static int min_extfrag_threshold;
  static int max_extfrag_threshold = 1000;
  #endif
  

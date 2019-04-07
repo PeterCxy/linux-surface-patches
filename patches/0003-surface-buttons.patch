@@ -1,4 +1,4 @@
-From 89b13c36ba8c99c9c282f3afe932ae4fdaf0176b Mon Sep 17 00:00:00 2001
+From e50f3107bac3619d0d91b96087deeeb9cc198eba Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:06:22 +0800
 Subject: [PATCH 03/12] surface-buttons
@@ -9,7 +9,7 @@ Subject: [PATCH 03/12] surface-buttons
  2 files changed, 114 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/input/misc/soc_button_array.c b/drivers/input/misc/soc_button_array.c
-index 23520df7650f..1ea239ff426d 100644
+index 55cd6e0b409c..9440b5cd5ce3 100644
 --- a/drivers/input/misc/soc_button_array.c
 +++ b/drivers/input/misc/soc_button_array.c
 @@ -29,12 +29,24 @@ struct soc_button_info {

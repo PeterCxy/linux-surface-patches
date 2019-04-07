@@ -1,4 +1,4 @@
-From c64a4fe4188ab3dbee00c4cdc18dc8e70dabaa12 Mon Sep 17 00:00:00 2001
+From 801dd6e4688c704df70f3a0c84388876128a6a52 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 7 Mar 2019 18:09:07 +0800
 Subject: [PATCH 04/12] ipts
@@ -137,10 +137,10 @@ index b310a897a4ad..cfad40f65513 100644
  }
  
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index b1c31967194b..192f6cef0b81 100644
+index 489c1e656ff6..de6e9c7aaf57 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -3114,6 +3114,9 @@ void i915_gem_object_do_bit_17_swizzle(struct drm_i915_gem_object *obj,
+@@ -3115,6 +3115,9 @@ void i915_gem_object_do_bit_17_swizzle(struct drm_i915_gem_object *obj,
  void i915_gem_object_save_bit_17_swizzle(struct drm_i915_gem_object *obj,
  					 struct sg_table *pages);
  
